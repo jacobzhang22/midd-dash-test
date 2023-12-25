@@ -6,14 +6,13 @@ export default function Hero() {
     <section className="hero">
       <div className="py-12">
         <h1 className="text-4xl font-semibold">
-          Everything
-          <br /> is better
+          Delivering straight
           <br />
-          with a&nbsp;<span className="text-primary">Pizza</span>
+          to your door from MiddXpress!
         </h1>
         <p className="my-6 text-gray-500 text-sm">
-          Pizza is the missing piece that makes every day complete, a simple yet
-          delicious joy in life
+          Stock up on your favorite grille foods, snacks, or candy— all
+          delivered in under 15 minutes by Tony Wang!
         </p>
         <div className="flex gap-4 text-sm">
           <button className="bg-primary uppercase flex items-center gap-2 text-white px-8 py-2 rounded-full">
@@ -28,10 +27,10 @@ export default function Hero() {
       </div>
       <div className="relative">
         <Image
-          src={"/pizza.png"}
+          src={"/midd_panther2.png"}
           layout={"fill"}
           objectFit={"contain"}
-          alt={"pizza"}
+          alt={"panther"}
         />
       </div>
     </section>
