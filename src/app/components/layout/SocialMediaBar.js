@@ -1,6 +1,6 @@
 const { default: SectionHeaders } = require("./SectionHeaders");
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faHouse } from "@fortawesome/free-solid-svg-icons";
 import {
   faLinkedinIn,
   faInstagram,
@@ -17,7 +17,7 @@ export default function Header() {
             <a
               href="mailto:jyzhang@middlebury.edu"
               target="_blank"
-              className="text-gray-600 hover:text-gray-800"
+              className="text-gray-400 hover:text-gray-800"
             >
               <FontAwesomeIcon icon={faEnvelope} className="social-icon-size" />
             </a>
@@ -26,7 +26,7 @@ export default function Header() {
             <a
               href="https://www.linkedin.com/company/middlebury-development/mycompany/"
               target="_blank"
-              className="text-blue-500 hover:text-blue-700"
+              className="text-gray-400 hover:text-gray-800"
             >
               <FontAwesomeIcon
                 icon={faLinkedinIn}
@@ -38,7 +38,7 @@ export default function Header() {
             <a
               href="https://www.instagram.com/yourpage"
               target="_blank"
-              className="text-pink-600 hover:text-pink-800"
+              className="text-gray-400 hover:text-gray-800"
             >
               <FontAwesomeIcon
                 icon={faInstagram}
@@ -46,13 +46,26 @@ export default function Header() {
               />
             </a>
           </li>
-          <li>
+          <li className="mr-4">
             <a
               href="https://www.tiktok.com/yourpage"
               target="_blank"
-              className="text-black hover:text-gray-800"
+              className="text-gray-400 hover:text-gray-800"
             >
               <FontAwesomeIcon icon={faTiktok} className="social-icon-size" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.yourcompanywebsite.com"
+              target="_blank"
+              className="text-gray-400 hover:text-gray-800"
+            >
+              <FontAwesomeIcon
+                icon="fa-solid fa-house"
+                className="social-icon-size"
+              />
+              <FontAwesomeIcon icon={faHouse} className="social-icon-size" />
             </a>
           </li>
         </ul>
