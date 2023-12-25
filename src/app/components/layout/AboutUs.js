@@ -16,7 +16,7 @@ export default function Hero() {
         </p>
         <p>
           Midd-Dash, our latest project, brings MiddXpress offerings directly to
-          your dorm! Expect regular updates and enhancements to MiddDash
+          your dorm! Expect regular updates and enhancements to Midd-Dash
           throughout the academic year as we frequently introduce new features.
           We value your input and feedback. Please share your suggestions with
           us, and we'll do our best to implement them in our development!
