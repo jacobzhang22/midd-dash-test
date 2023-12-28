@@ -25,12 +25,15 @@ export default function Hero() {
           </button>
         </div>
       </div>
-      <div className="relative">
+      <div
+        className="relative flex justify-center items-center"
+        style={{ height: "400px" }}
+      >
         <Image
-          src={"/midd_panther2.png"}
-          layout={"fill"}
-          objectFit={"contain"}
-          alt={"panther"}
+          src="/midd_panther2.png"
+          alt="panther"
+          width={300}
+          height={300}
         />
       </div>
     </section>
