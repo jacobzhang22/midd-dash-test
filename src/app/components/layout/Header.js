@@ -2,7 +2,7 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 export default function Header() {
-  //const session = useSession();
+  const session = useSession();
   console.log(session);
   return (
     <header className="flex items-center justify-between">
