@@ -11,12 +11,22 @@ export default function ProfilePage() {
   const session = useSession();
   const [userName, setUserName] = useState("");
   const [image, setImage] = useState("");
+  const [phone, setPhone] = useState("");
+  const [roomNumber, setRoomNumber] = useState("");
+  const [dorm, setDorm] = useState("");
   const { status } = session;
 
   useEffect(() => {
     if (status === "authenticated") {
       setUserName(session.data.user.name);
       setImage(session.data.user.image);
+      fetch("/api/profile").then((response) => {
+        response.json().then((data) => {
+          setPhone(data.phone);
+          setDorm(data.dorm);
+          setRoomNumber(data.roomNumber);
+        });
+      });
     }
   }, [session, status]);
 
@@ -26,7 +36,13 @@ export default function ProfilePage() {
       const response = await fetch("/api/profile", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: userName, image }),
+        body: JSON.stringify({
+          name: userName,
+          image,
+          phone,
+          roomNumber,
+          dorm,
+        }),
       });
       if (response.ok) resolve();
       else reject();
@@ -77,7 +93,7 @@ export default function ProfilePage() {
     <section className="mt-8">
       <h1 className="text-center text-primary text-4xl mb-4">Profile</h1>
       <div className="max-w md mx-auto">
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4">
           <div>
             <div className="p-2 rounded-lg relative max-w-[120px] ">
               {image && (
@@ -102,18 +118,50 @@ export default function ProfilePage() {
             </div>
           </div>
           <form className="grow" onSubmit={handleProfileInfoUpdate}>
+            <label>First and last name</label>
             <input
               type="text"
               placeholder="First and last name"
               value={userName}
               onChange={(ev) => setUserName(ev.target.value)}
             />
+            <label>Email</label>
             <input
               type="email"
+              placeholder={"email"}
               disabled={true}
               value={session.data.user.email}
             />
-            <button type="submit">Save</button>
+            <label>Phone</label>
+            <input
+              type="tel"
+              placeholder="Phone number"
+              value={phone}
+              onChange={(ev) => setPhone(ev.target.value)}
+            />
+            <div className="flex gap-2">
+              <div className="flex-grow">
+                <label>Room number</label>
+                <input
+                  type="text"
+                  placeholder="Room number"
+                  value={roomNumber}
+                  onChange={(ev) => setRoomNumber(ev.target.value)}
+                />
+              </div>
+              <div className="flex-grow">
+                <label>Dorm</label>
+                <input
+                  type="text"
+                  placeholder="Dorm"
+                  value={dorm}
+                  onChange={(ev) => setDorm(ev.target.value)}
+                />
+              </div>
+            </div>
+            <button type="submit" className="my-2">
+              Save
+            </button>
           </form>
         </div>
       </div>
