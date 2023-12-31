@@ -11,8 +11,8 @@ export default function Hero() {
           to your door from MiddXpress!
         </h1>
         <p className="my-6 text-gray-500 text-sm">
-          Stock up on your favorite grille foods, snacks, or candy— all
-          delivered in under 15 minutes by Tony Wang!
+          Stock up on your favorite grille foods, snacks, or candies all
+          delivered in under 15 minutes!
         </p>
         <div className="flex justify-center items-center gap-4 text-sm">
           <button className="flex justify-center bg-primary uppercase items-center gap-2 text-white px-4 py-2 rounded-full">

@@ -9,6 +9,7 @@ const UserSchema = new Schema(
     phone: { type: String },
     roomNumber: { type: String },
     dorm: { type: String },
+    admin: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

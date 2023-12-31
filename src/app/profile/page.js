@@ -3,9 +3,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import InfoBox from "@/components/layout/InfoBox";
-import SuccessBox from "@/components/layout/SuccessBox";
-import toast from "react-hot-toast";
+import UserTabs from "@/components/layout/UserTabs";
 
 export default function ProfilePage() {
   const session = useSession();
@@ -14,6 +12,7 @@ export default function ProfilePage() {
   const [phone, setPhone] = useState("");
   const [roomNumber, setRoomNumber] = useState("");
   const [dorm, setDorm] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const { status } = session;
 
   useEffect(() => {
@@ -25,6 +24,7 @@ export default function ProfilePage() {
           setPhone(data.phone);
           setDorm(data.dorm);
           setRoomNumber(data.roomNumber);
+          setIsAdmin(data.admin);
         });
       });
     }
@@ -91,8 +91,8 @@ export default function ProfilePage() {
 
   return (
     <section className="mt-8">
-      <h1 className="text-center text-primary text-4xl mb-4">Profile</h1>
-      <div className="max-w md mx-auto">
+      <UserTabs isAdmin={isAdmin} />
+      <div className="max-w md mx-auto mt-8">
         <div className="flex gap-4">
           <div>
             <div className="p-2 rounded-lg relative max-w-[120px] ">
