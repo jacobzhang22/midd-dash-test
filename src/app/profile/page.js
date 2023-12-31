@@ -7,13 +7,16 @@ import { useEffect, useState } from "react";
 export default function ProfilePage() {
   const session = useSession();
   const [userName, setUserName] = useState("");
+  const [image, setImage] = useState("");
   const { status } = session;
   const [saved, setSaved] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     if (status === "authenticated") {
       setUserName(session.data.user.name);
+      setImage(session.data.user.image);
     }
   }, [session, status]);
 
@@ -24,7 +27,7 @@ export default function ProfilePage() {
     const response = await fetch("/api/profile", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: userName }),
+      body: JSON.stringify({ name: userName, image }),
     });
     setIsSaving(false);
     if (response.ok) {
@@ -36,11 +39,15 @@ export default function ProfilePage() {
     const files = ev.target.files;
     if (files?.length === 1) {
       const data = new FormData();
-      data.set("files", files[0]);
-      await fetch("/api/upload", {
+      data.set("file", files[0]);
+      setIsUploading(true);
+      const response = await fetch("/api/upload", {
         method: "POST",
         body: data,
       });
+      const link = await response.json();
+      setImage(link);
+      setIsUploading(false);
     }
   }
 
@@ -51,8 +58,6 @@ export default function ProfilePage() {
   if (status === "unauthenticated") {
     return redirect("/login");
   }
-
-  const userImage = session.data.user.image;
 
   return (
     <section className="mt-8">
@@ -68,16 +73,23 @@ export default function ProfilePage() {
             Saving...
           </h2>
         )}
+        {isUploading && (
+          <h2 className="text-center bg-blue-100 p-4 rounded-lg border border-blue-300">
+            Uploading...
+          </h2>
+        )}
         <div className="flex gap-4 items-center">
           <div>
-            <div className="p-2 rounded-lg relative">
-              <Image
-                className="rounded-lg w-full h-full mb-1"
-                src={userImage}
-                width={250}
-                height={250}
-                alt={"avatar"}
-              />
+            <div className="p-2 rounded-lg relative max-w-[120px] ">
+              {image && (
+                <Image
+                  className="rounded-lg w-full h-full mb-1"
+                  src={image}
+                  width={250}
+                  height={250}
+                  alt={"avatar"}
+                />
+              )}
               <label>
                 <input
                   type="file"
