@@ -4,6 +4,7 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import UserTabs from "@/components/layout/UserTabs";
+import toast from "react-hot-toast";
 
 export default function ProfilePage() {
   const session = useSession();
