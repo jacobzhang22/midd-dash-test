@@ -13,6 +13,7 @@ export default function ProfilePage() {
   const [roomNumber, setRoomNumber] = useState("");
   const [dorm, setDorm] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
+  const [profileFetched, setProfileFetched] = useState(false);
   const { status } = session;
 
   useEffect(() => {
@@ -25,6 +26,7 @@ export default function ProfilePage() {
           setDorm(data.dorm);
           setRoomNumber(data.roomNumber);
           setIsAdmin(data.admin);
+          setProfileFetched(true);
         });
       });
     }
@@ -81,7 +83,7 @@ export default function ProfilePage() {
     }
   }
 
-  if (status === "loading") {
+  if (status === "loading" || !profileFetched) {
     return "Loading...";
   }
 
