@@ -5,12 +5,12 @@ import {
   faInstagram,
   faTiktok,
 } from "@fortawesome/free-brands-svg-icons";
+import SectionHeaders from "./SectionHeaders";
 
 export default function Header() {
   return (
     <section className="text-center my-8">
-      {/* Assuming SectionHeaders is another component you've defined */}
-      {/* <SectionHeaders mainHeader={"Contact Us"} /> */}
+      <SectionHeaders mainHeader={"Contact Us"} />
       <div className="mt-8">
         <ul className="flex list-none p-0 justify-center">
           <li className="mr-4">

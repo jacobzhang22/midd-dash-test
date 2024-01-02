@@ -9,8 +9,12 @@ export default function Home() {
       <pre className="text-gray-500 -mt-2"> by MiddDev</pre>
       <Hero />
       <HomeMenu />
-      <AboutUs />
-      <SocialMediaBar />
+      <section id="about">
+        <AboutUs />
+      </section>
+      <section id="contact">
+        <SocialMediaBar />
+      </section>
     </>
   );
 }
