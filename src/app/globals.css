@@ -12,6 +12,7 @@ section.hero {
   height: 2.5em;
 }
 
+select,
 input[type="email"],
 input[type="password"],
 input[type="tel"],
@@ -42,7 +43,8 @@ button,
 }
 
 button[type="submit"],
-.submit {
+.submit,
+button.primary {
   @apply border-primary bg-primary text-white;
 }
 
