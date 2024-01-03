@@ -1,6 +1,6 @@
 import { CartContext } from "@/components/AppContext";
 import { useContext } from "react";
-import toast from "react-hot-toast";
+import FlyingButton from "react-flying-item";
 
 export default function MenuItem(menuItem) {
   const { image, name, description, basePrice } = menuItem;
@@ -8,7 +8,6 @@ export default function MenuItem(menuItem) {
 
   function handleAddToCartButtonClick() {
     addToCart(menuItem);
-    toast.success("Added to cart!");
   }
 
   return (
@@ -22,13 +21,16 @@ export default function MenuItem(menuItem) {
       </div>
       <h4 className="font-semibold text-xl my-3">{name}</h4>
       <p className="text-gray-500 text-sm line-clamp-3">{description}</p>
-      <button
-        type="button"
-        onClick={handleAddToCartButtonClick}
-        className="mt-4 bg-primary text-white rounded-full px-8 py-2"
-      >
-        Add to cart ${basePrice}
-      </button>
+      <div className="flying-button-parent mt-4">
+        <FlyingButton targetTop={"5%"} targetLeft={"95%"} src={image}>
+          <div
+            className="primary sticky bottom-2"
+            onClick={handleAddToCartButtonClick}
+          >
+            Add to cart ${basePrice}
+          </div>
+        </FlyingButton>
+      </div>
     </div>
   );
 }

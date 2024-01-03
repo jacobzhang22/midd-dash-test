@@ -5,6 +5,11 @@ import toast from "react-hot-toast";
 
 export const CartContext = createContext({});
 
+export function cartProductPrice(cartProduct) {
+  let price = cartProduct.basePrice;
+  return price;
+}
+
 export function AppProvider({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
   const ls = typeof window !== "undefined" ? window.localStorage : null;
@@ -28,6 +33,7 @@ export function AppProvider({ children }) {
       saveCartProductsToLocalStorage(newCartProducts);
       return newCartProducts;
     });
+    toast.success("Product removed");
   }
 
   function saveCartProductsToLocalStorage(cartProducts) {

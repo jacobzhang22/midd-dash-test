@@ -2,6 +2,7 @@
 import EditableImage from "@/components/layout/EditableImage";
 import { useState } from "react";
 import { useProfile } from "../UseProfile";
+import AddressInputs from "@/components/layout/AddressInputs";
 
 export default function UserForm({ user, onSave }) {
   const [userName, setUserName] = useState(user?.name || "");
@@ -11,6 +12,12 @@ export default function UserForm({ user, onSave }) {
   const [dorm, setDorm] = useState(user?.dorm || "");
   const [admin, setAdmin] = useState(user?.admin || false);
   const { data: loggedInUserData } = useProfile();
+
+  function handleAddressChange(propName, value) {
+    if (propName === "dorm") setDorm(value);
+    if (propName === "roomNumber") setRoomNumber(value);
+    if (propName === "phone") setPhone(value);
+  }
 
   return (
     <div className="flex gap-4">
@@ -39,33 +46,14 @@ export default function UserForm({ user, onSave }) {
           value={user.email}
           placeholder={"email"}
         />
-        <label>Phone</label>
-        <input
-          type="tel"
-          placeholder="Phone number"
-          value={phone}
-          onChange={(ev) => setPhone(ev.target.value)}
+        <AddressInputs
+          addressProps={{
+            phone,
+            roomNumber,
+            dorm,
+          }}
+          setAddressProp={handleAddressChange}
         />
-        <div className="grid grid-cols-2 gap-2">
-          <div>
-            <label>Room number</label>
-            <input
-              type="text"
-              placeholder="Room number"
-              value={roomNumber}
-              onChange={(ev) => setRoomNumber(ev.target.value)}
-            />
-          </div>
-          <div>
-            <label>Dorm</label>
-            <input
-              type="text"
-              placeholder="Dorm"
-              value={dorm}
-              onChange={(ev) => setDorm(ev.target.value)}
-            />
-          </div>
-        </div>
         {loggedInUserData.admin && (
           <div>
             <label
